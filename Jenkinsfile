@@ -3,14 +3,21 @@ pipeline {
 
     environment {
         AWS_DEFAULT_REGION = 'us-east-1'
-        // AWS_ACCESS_KEY_ID = credentials('AKIATYFGC35IKUF5WGWM')
-        // AWS_SECRET_ACCESS_KEY = credentials('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')
+        AWS_ACCESS_KEY_ID = credentials('AKIATYFGC35IKUF5WGWM')
+        AWS_SECRET_ACCESS_KEY = credentials('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')
         // MICROSOFT_TEAMS_WEBHOOK_URL = credentials('microsoft-teams-webhook-url')
         ECS_CLUSTER_NAME = 'HelloThere'
         ECS_CLUSTER_SERVICE_NAME = 'HelloThere-ecs-svc'
     }
 
     stages {
+        stage('Configure AWS') {
+            steps {
+                sh 'aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID'
+                sh 'aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY'
+                sh 'aws configure set default.region $AWS_DEFAULT_REGION'
+            }
+
         stage('Build') {
             steps {
                 sh 'docker build -t hello .'
