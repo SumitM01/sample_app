@@ -3,8 +3,6 @@ pipeline {
 
     environment {
         AWS_DEFAULT_REGION = 'us-east-1'
-        // AWS_ACCESS_KEY_ID = credentials('AKIAQIXXL5HVCU7WB4PN')
-        // AWS_SECRET_ACCESS_KEY = credentials('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')
         // MICROSOFT_TEAMS_WEBHOOK_URL = credentials('microsoft-teams-webhook-url')
         ECS_CLUSTER_NAME = 'HelloThere'
         ECS_CLUSTER_SERVICE_NAME = 'HelloThere-ecs-svc'
